@@ -1,7 +1,7 @@
 using System;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
-using SimpleApi.DataObject
+using SimpleApi.Data.DataObject;
 
 namespace SimpleApi.Data
 {

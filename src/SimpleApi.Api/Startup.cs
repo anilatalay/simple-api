@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using SimpleApi.Data;
+using SimpleApi.Helpers;
 
 namespace SimpleApi.Api
 {
@@ -16,6 +18,14 @@ namespace SimpleApi.Api
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            // Settings
+            var dbSettings = new DbSettings();
+            Configuration.GetSection("Database").Bind(dbSettings);
+
+            // Database Settings
+            SimpleApiDb.ConnectionString = dbSettings.ConnectionString;
+            SimpleApiDb.DatabaseName = dbSettings.Name;
         }
 
         public IConfiguration Configuration { get; }
